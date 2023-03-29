@@ -10,24 +10,29 @@ function App() {
   function onScroll() {
     setScrollPos(window.scrollY);
   }
+  
   useEffect(() => {
     window.addEventListener("scroll", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);  
+  }, []); 
   return (
     <div className="layout">
       <div className='container FC'>
         {randomCards.map((v,i)=>(
           <div key={i} className='cardContainer FC'>
-
             <div className='cardImageContainer FC'>
-              {scrollPos < 420 * (i + 1 + NodePadding) && (scrollPos + windowHeight) > 420 * (i - 1 - NodePadding) ? <img className='cardImage' src={randomImage[v]}></img> :<div className='skeleton'></div>}
-              {/* <img className='cardImage' src={randomImage[v]}></img> */}
+              {scrollPos < 420 * (i + 1 + NodePadding) && (scrollPos + windowHeight) > 420 * (i - 1 - NodePadding) 
+                ? <img className='cardImage' src={randomImage[v]}></img> 
+                : <div className='skeleton'></div>
+              }
             </div>
             <div className='textContainer'>
-              {scrollPos < 420 * (i + 1 + NodePadding) && (scrollPos + windowHeight) > 420 * (i - 1 - NodePadding)? 'virtual' : 'hide'}
+              {scrollPos < 420 * (i + 1 + NodePadding) && (scrollPos + windowHeight) > 420 * (i - 1 - NodePadding)
+                ? 'display' 
+                : 'hide'
+              }
             </div>
           </div>
         ))}
